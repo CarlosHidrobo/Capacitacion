@@ -1,1 +1,48 @@
-Hola tu nariz contra mi, porque hay que mirar a la cara para hablar con otra persona :)
+# Función para mostrar la disponibilidad de lotes
+def mostrar_disponibilidad_lotes(lotes):
+    print("Lotes Disponibles:")
+    for fila in lotes:
+        for lote in fila:
+            if lote == 0:
+                print("[ ]", end=" ")
+            else:
+                print("[X]", end=" ")
+        print()
+
+# Función para seleccionar un lote
+def seleccionar_lote(lotes):
+    fila = int(input("Ingrese el número de fila del lote: "))
+    columna = int(input("Ingrese el número de columna del lote: "))
+
+    if lotes[fila][columna] == 0:
+        lotes[fila][columna] = 1
+        print("¡Lote seleccionado con éxito!")
+    else:
+        print("El lote seleccionado ya ha sido vendido.")
+
+# Función para ver los detalles de un lote seleccionado
+def ver_detalles_lote(lotes):
+    fila = int(input("Ingrese el número de fila del lote: "))
+    columna = int(input("Ingrese el número de columna del lote: "))
+
+    if lotes[fila][columna] == 1:
+        print("Detalles del lote seleccionado:")
+        print("Fila:", fila)
+        print("Columna:", columna)
+    else:
+        print("El lote seleccionado no ha sido vendido.")
+
+# Función para ver los clientes
+def ver_clientes(clientes):
+    if len(clientes) == 0:
+        print("No hay clientes registrados.")
+    else:
+        print("Clientes:")
+        for cliente in clientes:
+            print(cliente)
+
+# Función principal del programa
+def main():
+    # Inicialización de la matriz de lotes
+    lotes = [[0, 0, 1, 0, 1],
+             [1, 0, 1, 0, 0],
