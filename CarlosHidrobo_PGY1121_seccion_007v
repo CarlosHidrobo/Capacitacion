@@ -1,0 +1,80 @@
+class lotesDuoc:
+    def __init__(self, filas, columnas):
+        self.filas = filas
+        self.columnas = columnas
+        self.lotes = [[0] * columnas for _ in range(filas)]
+
+    def mostrar_lotes(self):
+        for fila in self.lotes:
+            for lote in fila:
+                if lote == 0:
+                    print("[ ]", end=" ")
+                else:
+                    print("[X]", end=" ")
+            print()
+
+    def seleccionar_lote(self, fila, columna):
+        if fila < 0 or fila >= self.filas or columna < 0 or columna >= self.columnas:
+            print("\nError: Lote seleccionado fuera de rango.")
+            return
+
+        if self.lotes[fila][columna] == 0:
+            self.lotes[fila][columna] = 1
+            print("\nLote seleccionado correctamente.")
+        else:
+            print("Error: El lote seleccionado ya está vendido.")
+
+    def editar_lote(self, fila, columna):
+        if fila < 0 or fila >= self.filas or columna < 0 or columna >= self.columnas:
+            print("Error: Lote seleccionado en uso.")
+            return
+
+        if self.lotes[fila][columna] == 0:
+            print("\nEl lote seleccionado está disponible.")
+        else:
+            self.lotes[fila][columna] = 0
+            print("\nEl lote seleccionado ha sido editado correctamente.")
+
+    def det_lote(self, fila, columna):
+        if fila < 0 or fila >= self.filas or columna < 0 or columna >= self.columnas:
+            print("Error: Lote seleccionado fuera de rango.")
+            return
+
+        if self.lotes[fila][columna] == 0:
+            print("\nEl lote seleccionado está disponible.")
+        else:
+            print("\nEl lote seleccionado está vendido.")
+
+# Crear instancia de la clase lotesDuoc con una matriz de 5 filas y 4 columnas
+lotes = lotesDuoc(5, 4)
+
+while True:
+    print("\noOo----- Menú -----oOo\n")
+    print("1. Ver disponibilidad de lotes")
+    print("2. Seleccionar un lote")
+    print("3. Editar lote seleccionado")
+    print("4. Ver detalles del lote seleccionado")
+    print("5. Ver clientes")
+    print("6. Salir")
+    opcion = input("Ingrese el número de la opción deseada: ")
+
+    if opcion == "1":
+        lotes.mostrar_lotes()
+    elif opcion == "2":
+        fila = int(input("Ingrese la fila del lote: "))
+        columna = int(input("Ingrese la columna del lote: "))
+        lotes.seleccionar_lote(fila, columna)
+    elif opcion == "3":
+        fila = int(input("Ingrese la fila del lote: "))
+        columna = int(input("Ingrese la columna del lote: "))
+        lotes.editar_lote(fila, columna)
+    elif opcion == "4":
+        fila = int(input("Ingrese la fila del lote: "))
+        columna = int(input("Ingrese la columna del lote: "))
+        lotes.det_lote(fila, columna)
+    elif opcion == "5":
+        print("Funcionalidad de ver clientes no implementada.")
+    elif opcion == "6":
+        break
+    else:
+        print("\nOPCIÓN INVÁLIDA. INGRESE UN NÚMERO VÁLIDO.\n")
