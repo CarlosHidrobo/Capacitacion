@@ -1,1 +1,89 @@
+class CasaFeliz:
+    def __init__(self):
+        self.depa_disponibles = {
+            1: ['A', 'B', 'C', 'D'],
+            2: ['A', 'B', 'C', 'D'],
+            3: ['A', 'B', 'C', 'D'],
+            4: ['A', 'B', 'C', 'D'],
+            5: ['A', 'B', 'C', 'D'],
+            6: ['A', 'B', 'C', 'D'],
+            7: ['A', 'B', 'C', 'D'],
+            8: ['A', 'B', 'C', 'D'],
+            9: ['A', 'B', 'C', 'D'],
+            10: ['A', 'B', 'C', 'D']
+        }
+        self.compr = {}
+        self.ganancias_totales = 0
 
+    def comprar_depa(self):
+        
+        piso = int(input("Ingrese el número del piso (1-10): "))
+
+        
+        tipo = input("Ingrese el tipo de departamento (A, B, C, D. Mayusculas): ")
+        run = input("Ingrese el RUN del comprador (sin puntos ni guiones): ")
+
+        if piso in self.depa_disponibles.keys() and tipo in self.depa_disponibles[piso]:
+            depa = f"{tipo}{piso}"
+            precio = self.calcular_precio_depa(piso, tipo)
+
+            if depa in self.compr:
+                print("El departamento seleccionado no está disponible.")
+            else:
+                print(f"¡Felicidades! Ha comprado el departamento {depa} por {precio} UF.")
+                self.compr[depa] = run
+                self.ganancias_totales += precio
+                self.depa_disponibles[piso].remove(tipo)
+        else:
+            print("\nLo lamento pero el departamento seleccionado no esta disponible :[")
+
+    def mostrar_depa_disponibles(self):
+        print("departamentos disponibles:")
+        print(self.depa_disponibles)
+
+    def ver_listado_compr(self):
+        print("Listado de compradores:")
+        for depa, run in self.compr.items():
+            print(f"{depa} - RUN: {run}")
+
+    def mostrar_ganancias_totales(self):
+        print(f"Ganancias totales: {self.ganancias_totales} UF")
+
+    def calcular_precio_depa(self, piso, tipo):
+        precios = {'A': 3800, 'B': 3000, 'C': 2800, 'D': 3500}
+        return precios[tipo]
+
+    def mostrar_menu(self):
+        menu = """
+        Bienvenido a Casa Feliz
+        Menú:
+        1. Comprar departamento
+        2. Mostrar depapartamentos disponibles
+        3. Ver listado de compradores
+        4. Mostrar ganancias totales
+        5. Salir
+        """
+
+        while True:
+            print(menu)
+            opcion = input("Ingrese una opción: ")
+
+            if opcion == '1':
+                self.comprar_depa()
+            elif opcion == '2':
+                self.mostrar_depa_disponibles()
+            elif opcion == '3':
+                self.ver_listado_compr()
+            elif opcion == '4':
+                self.mostrar_ganancias_totales()
+            elif opcion == '5':
+                print("Gracias por utilizar la aplicacion de Casa Feliz. ¡Hasta luego!")
+                print("waaaaaaaaaaaaaaaaaaaaaaaaaa")
+                break
+            else:
+                print("Opción inválida. Por favor, seleccione una opción válida.")
+
+
+
+casa_feliz = CasaFeliz()
+casa_feliz.mostrar_menu()
